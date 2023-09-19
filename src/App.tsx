@@ -1,10 +1,12 @@
 
 import Layout from './routes'
 
-export default function App() {
+const App: React.FC = () => {
   return (
     <>
-      <Layout/> 
+      <Layout />
     </>
   );
 }
+
+export default App

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { ForgetPassword } from "../services/auth-service";
 
-function ForgotePassword() {
+const ForgotePassword:React.FC = () =>{
 const navigate =useNavigate()
-const [answer,setAnswer] = useState('')
-const [email,setEmail] = useState('')
-const [password,setPassword] = useState('')
+const [answer,setAnswer] = useState<string>('')
+const [email,setEmail] = useState<string>('')
+const [password,setPassword] = useState<string>('')
 
   function handleSubmit(e: any) {
     e.preventDefault();

@@ -7,14 +7,16 @@ import { logout } from "../redux/slices/authSlice";
 
 const navigation = [
   { name: "Home", to: "/" },
-  { name: "About", to: "/about" },
+  { name: "All User", to: "/all-user" },
+  { name: "My Posts", to: "/my-posts" },
+  { name: "Add Post", to: "/add-post" },
 ];
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user } = useSelector((state:any) => state?.auth);
-const navigate = useNavigate()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const { user } = useSelector((state: any) => state?.auth);
+  const navigate = useNavigate()
   function handleDelete() {
     dispatch(logout());
     localStorage.removeItem("token");

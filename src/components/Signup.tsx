@@ -3,8 +3,9 @@ import { useFormik } from "formik";
 import { RegisterSchemas } from "../schemas/RegisterSchemas";
 import { RegisteredUser } from "../services/auth-service";
 import toast from "react-hot-toast";
-export default function Signup() {
- const navigate = useNavigate()
+
+const Signup: React.FC = () => {
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -15,13 +16,23 @@ export default function Signup() {
       cpassword: "",
       gender: "",
       age: "",
-      phone:"",
-      answer:""
+      phone: "",
+      answer: "",
     },
     validationSchema: RegisterSchemas,
     onSubmit: async (values) => {
       console.log(values);
-      const { first_name, last_name, email, password, cpassword, gender, age, phone, answer } = values
+      const {
+        first_name,
+        last_name,
+        email,
+        password,
+        cpassword,
+        gender,
+        age,
+        phone,
+        answer,
+      } = values;
       const data = {
         first_name,
         last_name,
@@ -31,17 +42,16 @@ export default function Signup() {
         gender,
         age,
         phone,
-        answer
-      }
+        answer,
+      };
       RegisteredUser(data)
-      .then((res)=>{
-        toast.success(res.data?.message);
-        navigate('/signin')
-      })
-      .catch((e)=>{
-        toast.error(e?.response?.data.message);
-        
-      })
+        .then((res) => {
+          toast.success(res.data?.message);
+          navigate("/signin");
+        })
+        .catch((e) => {
+          toast.error(e?.response?.data.message);
+        });
     },
   });
   return (
@@ -56,7 +66,6 @@ export default function Signup() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-white  px-6 py-12 shadow sm:rounded-lg sm:px-12 ">
             <form className="space-y-6" onSubmit={formik.handleSubmit}>
-              
               <div className="flex gap-x-2">
                 <div>
                   <label
@@ -72,10 +81,11 @@ export default function Signup() {
                       type="text"
                       value={formik.values.first_name}
                       onChange={formik.handleChange}
-
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
-                    {formik.errors.first_name && formik.touched.first_name ? <p className="text-red-500">{formik.errors.first_name}</p> : null}
+                    {formik.errors.first_name && formik.touched.first_name ? (
+                      <p className="text-red-500">{formik.errors.first_name}</p>
+                    ) : null}
                   </div>
                 </div>
 
@@ -93,10 +103,11 @@ export default function Signup() {
                       type="text"
                       value={formik.values.last_name}
                       onChange={formik.handleChange}
-
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
-                      {formik.errors.last_name && formik.touched.last_name ? <p className="text-red-500">{formik.errors.last_name}</p> : null}
+                    {formik.errors.last_name && formik.touched.last_name ? (
+                      <p className="text-red-500">{formik.errors.last_name}</p>
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -117,7 +128,9 @@ export default function Signup() {
                     onChange={formik.handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
-                    {formik.errors.email && formik.touched.email ? <p className="text-red-500">{formik.errors.email}</p> : null}
+                  {formik.errors.email && formik.touched.email ? (
+                    <p className="text-red-500">{formik.errors.email}</p>
+                  ) : null}
                 </div>
               </div>
               <div className="flex gap-x-2">
@@ -137,7 +150,9 @@ export default function Signup() {
                       onChange={formik.handleChange}
                       className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
-                      {formik.errors.password && formik.touched.password ? <p className="text-red-500">{formik.errors.password}</p> : null}
+                    {formik.errors.password && formik.touched.password ? (
+                      <p className="text-red-500">{formik.errors.password}</p>
+                    ) : null}
                   </div>
                 </div>
 
@@ -155,10 +170,11 @@ export default function Signup() {
                       type="password"
                       value={formik.values.cpassword}
                       onChange={formik.handleChange}
-
                       className="block  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
-                      {formik.errors.cpassword && formik.touched.cpassword ? <p className="text-red-500">{formik.errors.cpassword}</p> : null}
+                    {formik.errors.cpassword && formik.touched.cpassword ? (
+                      <p className="text-red-500">{formik.errors.cpassword}</p>
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -176,10 +192,12 @@ export default function Signup() {
                     name="phone"
                     type="text"
                     value={formik.values.phone}
-                      onChange={formik.handleChange}
+                    onChange={formik.handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
-                    {formik.errors.phone && formik.touched.phone ? <p className="text-red-500">{formik.errors.phone}</p> : null}
+                  {formik.errors.phone && formik.touched.phone ? (
+                    <p className="text-red-500">{formik.errors.phone}</p>
+                  ) : null}
                 </div>
               </div>
 
@@ -198,10 +216,11 @@ export default function Signup() {
                       type="text"
                       value={formik.values.age}
                       onChange={formik.handleChange}
-
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
-                      {formik.errors.age && formik.touched.age ? <p className="text-red-500">{formik.errors.age}</p> : null}
+                    {formik.errors.age && formik.touched.age ? (
+                      <p className="text-red-500">{formik.errors.age}</p>
+                    ) : null}
                   </div>
                 </div>
 
@@ -219,10 +238,11 @@ export default function Signup() {
                       type="text"
                       value={formik.values.gender}
                       onChange={formik.handleChange}
-
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
-                      {formik.errors.gender && formik.touched.gender ? <p className="text-red-500">{formik.errors.gender}</p> : null}
+                    {formik.errors.gender && formik.touched.gender ? (
+                      <p className="text-red-500">{formik.errors.gender}</p>
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -240,10 +260,12 @@ export default function Signup() {
                     name="answer"
                     type="text"
                     value={formik.values.answer}
-                      onChange={formik.handleChange}
+                    onChange={formik.handleChange}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
-                    {formik.errors.answer && formik.touched.answer ? <p className="text-red-500">{formik.errors.answer}</p> : null}
+                  {formik.errors.answer && formik.touched.answer ? (
+                    <p className="text-red-500">{formik.errors.answer}</p>
+                  ) : null}
                 </div>
               </div>
 
@@ -255,8 +277,6 @@ export default function Signup() {
                   Sign up
                 </button>
               </div>
-
-              
             </form>
           </div>
 
@@ -273,4 +293,6 @@ export default function Signup() {
       </div>
     </>
   );
-}
+};
+
+export default Signup;

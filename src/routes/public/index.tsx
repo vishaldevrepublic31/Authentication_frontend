@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-function Public() {
+const Public: React.FC = () => {
   const navigate = useNavigate();
   const [checkedLogin, setCheckedLogin] = useState<string | null>("");
 
@@ -12,9 +12,9 @@ function Public() {
     }
   });
   return <div>{checkedLogin ? <>
-  {navigate('/')}
+    {navigate('/')}
   </>
-  : <Outlet /> }</div>;
+    : <Outlet />}</div>;
 }
 
 export default Public;

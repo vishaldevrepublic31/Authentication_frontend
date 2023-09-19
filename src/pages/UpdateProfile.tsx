@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { UpdateProfileApi } from "../services/auth-service";
 import toast from "react-hot-toast";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { login } from "../redux/slices/authSlice";
 
-function UpdateProfile() {
-  const { user } = useSelector((state) => state?.auth);
+const UpdateProfile: React.FC = () => {
+  const { user } = useSelector((state: any) => state?.auth);
   const [first_name, setFirst_name] = useState(user?.first_name || "");
   const [last_name, setLast_name] = useState(user?.last_name || "");
   const [phone, setPhone] = useState(user?.phone || "");
@@ -29,15 +29,15 @@ function UpdateProfile() {
       answer,
     };
     const token = localStorage.getItem('token')
-    UpdateProfileApi(token,formdata)
+    UpdateProfileApi(token, formdata)
       .then((res) => {
         toast.success(res.data?.message);
         dispatch(login(res.data.user));
         navigate("/");
       })
       .catch((e) => {
-        console.log('error',e);
-        
+        console.log('error', e);
+
         toast.error(e?.response?.data.message);
       });
   }

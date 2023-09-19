@@ -1,5 +1,4 @@
-// import toast from "react-hot-toast";
-// import axiosInstance from "../helpers/axiosInstance";
+
 import axios from "axios";
 
 const PORT = 'http://localhost:5000/api/v1/user/'
@@ -40,3 +39,10 @@ export const ForgetPassword =async (data: any) => {
    return axios.post(`${PORT}forget-password`,data)
 
 }
+
+export const AllUsers =async () => {
+    return axios.get(`${PORT}users`)
+ 
+ }
+
+

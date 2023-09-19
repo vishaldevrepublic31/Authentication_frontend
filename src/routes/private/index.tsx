@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-function Private() {
+const Private: React.FC = () => {
   const navigate = useNavigate();
   const [checkedLogin, setCheckedLogin] = useState<string | null>("");
 
@@ -14,9 +14,9 @@ function Private() {
     }
   });
   return <div>{checkedLogin ? <>
-  <Outlet /> 
+    <Outlet />
   </>
-  : null}</div>;
+    : null}</div>;
 }
 
 export default Private;

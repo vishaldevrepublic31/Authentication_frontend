@@ -1,9 +1,9 @@
 
-function About() {
-  return (
-    <div>
-      
-    
+const About: React.FC = () => {
+    return (
+        <div>
+
+
             <div className="row contactus ">
                 <div className="col-md-6 ">
                     <img
@@ -23,9 +23,9 @@ function About() {
                     </p>
                 </div>
             </div>
-    
-    </div>
-  )
+
+        </div>
+    )
 }
 
 export default About
