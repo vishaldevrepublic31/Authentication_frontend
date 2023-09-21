@@ -1,13 +1,14 @@
 
 import axios from "axios";
+import { ILogin, IRegister, IUpdateProfile } from "../interfaces";
 
 const PORT = 'http://localhost:5000/api/v1/user/'
 
-export const RegisteredUser =async (formData: any) => {
+export const RegisteredUser =async (formData: IRegister) => {
     return await axios.post(`${PORT}register`,formData)
 }
 
-export const LoginUser = async (formData:any)=>{
+export const LoginUser = async (formData:ILogin)=>{
     return axios.post(`${PORT}login`,formData)
 }
 
@@ -20,7 +21,7 @@ export const Profile = async(token: any)=>{
         }})
 }
 
-export const UpdateProfileApi =async (token:any,data: any) => {
+export const UpdateProfileApi =async (token: string | null,data: IUpdateProfile) => {
     console.log("data->",data);
     console.log("token->",token);
     

@@ -24,3 +24,29 @@ export interface ICard {
   _id:string
   post:[]
 }
+
+export interface IAddPost {
+  title:string
+  description:string
+  avatar:string
+}
+
+export interface INavigation {
+  name:string
+  to:string
+}
+
+export interface IForgotePassword {
+  email:string
+  password:string
+  answer:string
+}
+
+export interface IUpdateProfile{
+  first_name:string
+  last_name:string
+  phone:string
+  age:string
+  gender:string
+  answer:string
+}

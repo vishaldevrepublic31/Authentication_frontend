@@ -5,22 +5,25 @@ import toast from "react-hot-toast";
 import { ICard } from "../../interfaces";
 
 function MyPost() {
-    const [posts, setPosts] = useState<ICard[]>([]);
-    const [edit, setEdit] = useState(false);
-    const [update, setUpdate] = useState(false)
-    const [id, setId] = useState("");
-    const [description, setDescription] = useState("");
-    const token = localStorage.getItem("token");
     const { user } = useSelector((state: any) => state?.auth);
-    const [title, setTitle] = useState("");
-    console.log(user);
+
+    const [posts, setPosts] = useState<ICard[]>([]);
+
+    const [title, setTitle] = useState<string>("");
+    const [description, setDescription] = useState<string>("");
+
+    const [edit, setEdit] = useState<boolean>(false);
+
+    const [update, setUpdate] = useState<boolean>(false)
+    const [id, setId] = useState<string>("");
+
+    const token: string | null = localStorage.getItem("token");
 
     function handleUpdatePost(id: any) {
         const data = {
             title,
             description,
         };
-        console.log(id, data);
         UpdatePost(id, data, token)
             .then((res) => {
                 setEdit(false)
@@ -50,10 +53,9 @@ function MyPost() {
     }
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token: string | null = localStorage.getItem("token");
         MyPosts(token)
             .then((res) => {
-                console.log("User post api =>", res.data.posts);
                 setPosts(res.data.posts.reverse());
             })
             .catch((e) => {

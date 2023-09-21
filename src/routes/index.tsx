@@ -22,11 +22,10 @@ const index: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const token = localStorage.getItem("token");
+  const token: string | null = localStorage.getItem("token");
   function getProfile(token: any) {
     Profile(token)
       .then((res) => {
-        // toast.success(res.data?.message);
         dispatch(login(res.data.user));
       })
       .catch((e) => {

@@ -1,19 +1,22 @@
 import toast from "react-hot-toast";
 import { AddPosts } from "../../services/post-service";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { IAddPost } from "../../interfaces";
 
 const AddPost: React.FC = () => {
-    const [description, setDescription] = useState("");
-    const [title, setTitle] = useState("");
-    const [avatar, setAvatar] = useState("");
-    const token = localStorage.getItem('token')
+    const [description, setDescription] = useState<string>("");
+    const [title, setTitle] = useState<string>("");
+    const [avatar, setAvatar] = useState<string>("");
+    const token: string | null = localStorage.getItem('token')
 
-    const navigate = useNavigate()
+    const navigate: NavigateFunction = useNavigate()
 
-    function handleSubmit(e: { preventDefault: () => void; }) {
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
-        const data = {
+        const data: IAddPost = {
             title,
             description,
             avatar
@@ -27,6 +30,13 @@ const AddPost: React.FC = () => {
                 toast.error(e?.response?.data.message);
             });
     }
+    useEffect(() => {
+
+        if (inputRef.current) {
+            inputRef.current.focus()
+        }
+    }, []);
+
     return (
         <div>
             <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -45,6 +55,7 @@ const AddPost: React.FC = () => {
                                 </label>
                                 <div>
                                     <input
+                                        ref={inputRef}
                                         id="title"
                                         name="title"
                                         type="text"

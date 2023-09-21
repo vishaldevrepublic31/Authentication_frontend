@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { LoginSchemas } from "../schemas/LoginSchemas";
 import { LoginUser } from "../services/auth-service";
@@ -10,9 +10,9 @@ import { login } from "../redux/slices/authSlice";
 const SigninTest: React.FC = () => {
 
 
-  const navigate = useNavigate()
+  const navigate: NavigateFunction = useNavigate()
   const dispatch = useDispatch()
-  const formik = useFormik({
+  const formik: any = useFormik({
     initialValues: {
       email: "",
       password: ""

@@ -1,26 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
 import { UpdateProfileApi } from "../services/auth-service";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { login } from "../redux/slices/authSlice";
+import { IUpdateProfile } from "../interfaces";
 
 const UpdateProfile: React.FC = () => {
   const { user } = useSelector((state: any) => state?.auth);
-  const [first_name, setFirst_name] = useState(user?.first_name || "");
-  const [last_name, setLast_name] = useState(user?.last_name || "");
-  const [phone, setPhone] = useState(user?.phone || "");
-  const [age, setAge] = useState(user?.age || "");
-  const [gender, setGender] = useState(user?.gender || "");
-  const [answer, setAnswer] = useState(user?.answer || "");
-  const navigate = useNavigate();
+  const [first_name, setFirst_name] = useState<string>(user?.first_name || "");
+  const [last_name, setLast_name] = useState<string>(user?.last_name || "");
+  const [phone, setPhone] = useState<string>(user?.phone || "");
+  const [age, setAge] = useState<string>(user?.age || "");
+  const [gender, setGender] = useState<string>(user?.gender || "");
+  const [answer, setAnswer] = useState<string>(user?.answer || "");
+  const navigate: NavigateFunction = useNavigate();
   const dispatch = useDispatch()
 
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent) {
 
     e.preventDefault();
-    const formdata = {
+    const formdata: IUpdateProfile = {
       first_name,
       last_name,
       phone,
@@ -28,7 +29,7 @@ const UpdateProfile: React.FC = () => {
       gender,
       answer,
     };
-    const token = localStorage.getItem('token')
+    const token: string | null = localStorage.getItem('token')
     UpdateProfileApi(token, formdata)
       .then((res) => {
         toast.success(res.data?.message);

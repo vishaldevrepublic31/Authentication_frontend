@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Dialog } from "@headlessui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
+import { INavigation } from "../interfaces";
 
-const navigation = [
+const navigation: INavigation[] = [
   { name: "Home", to: "/" },
   { name: "All User", to: "/all-user" },
   { name: "My Posts", to: "/my-posts" },
@@ -16,8 +17,8 @@ const Header: React.FC = () => {
   const dispatch = useDispatch();
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const { user } = useSelector((state: any) => state?.auth);
-  const navigate = useNavigate()
-  function handleDelete() {
+  const navigate: NavigateFunction = useNavigate()
+  function handleDelete(): void {
     dispatch(logout());
     localStorage.removeItem("token");
     navigate('/signin')

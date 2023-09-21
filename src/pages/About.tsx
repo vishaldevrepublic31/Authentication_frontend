@@ -3,7 +3,6 @@ const About: React.FC = () => {
     return (
         <div>
 
-
             <div className="row contactus ">
                 <div className="col-md-6 ">
                     <img

@@ -1,26 +1,27 @@
-import  { useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { ForgetPassword } from "../services/auth-service";
+import { IForgotePassword } from "../interfaces";
 
-const ForgotePassword:React.FC = () =>{
-const navigate =useNavigate()
-const [answer,setAnswer] = useState<string>('')
-const [email,setEmail] = useState<string>('')
-const [password,setPassword] = useState<string>('')
+const ForgotePassword: React.FC = () => {
+  const navigate = useNavigate()
+  const [answer, setAnswer] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const formdata = {
+    const formdata: IForgotePassword = {
       password,
       answer,
       email
     };
-    
+
     ForgetPassword(formdata)
       .then((res) => {
         toast.success(res.data?.message);
-        
+
         navigate("/signin");
       })
       .catch((e) => {
@@ -54,7 +55,7 @@ const [password,setPassword] = useState<string>('')
                     name="email"
                     type="text"
                     value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -72,7 +73,7 @@ const [password,setPassword] = useState<string>('')
                     name="answer"
                     type="text"
                     value={answer}
-                    onChange={(e)=>setAnswer(e.target.value)}
+                    onChange={(e) => setAnswer(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -91,7 +92,7 @@ const [password,setPassword] = useState<string>('')
                     name="password"
                     type="password"
                     value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>

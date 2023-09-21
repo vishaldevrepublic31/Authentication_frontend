@@ -13,7 +13,7 @@ export const MyPosts = async (token: any) => {
     },
   });
 };
-export const AddPosts = async ( token: any,data: any) => {
+export const AddPosts = async ( token: string | null,data: any) => {
   console.log('image',data.avatar);
   
   return axios.post(`${PORT}create-post`, data , {
@@ -24,7 +24,7 @@ export const AddPosts = async ( token: any,data: any) => {
   });
 };
 
-export const UpdatePost = async (id: any, data: any, token: any) => {
+export const UpdatePost = async (id: number, data: any, token: string | null) => {
   return axios.patch(`${PORT}update-post/${id}`, data, {
     headers: {
       "Content-Type": "application/json",

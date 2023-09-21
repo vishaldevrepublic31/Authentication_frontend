@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { NavigateFunction, Outlet, useNavigate } from "react-router-dom";
 
 const Private: React.FC = () => {
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const [checkedLogin, setCheckedLogin] = useState<string | null>("");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token: string | null = localStorage.getItem("token");
     if (token) {
       setCheckedLogin(token);
     } else {
