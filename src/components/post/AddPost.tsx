@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const AddPost: React.FC = () => {
     const [description, setDescription] = useState("");
     const [title, setTitle] = useState("");
+    const [avatar, setAvatar] = useState("");
     const token = localStorage.getItem('token')
 
     const navigate = useNavigate()
@@ -14,7 +15,8 @@ const AddPost: React.FC = () => {
         e.preventDefault()
         const data = {
             title,
-            description
+            description,
+            avatar
         }
         AddPosts(token, data)
             .then((res) => {
@@ -72,6 +74,28 @@ const AddPost: React.FC = () => {
                                         type="text"
                                         // value={description}
                                         onChange={e => setDescription(e.target.value)}
+                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
+                                </div>
+                            </div>
+                            {/* image */}
+                            <div>
+
+
+                                <label
+                                    htmlFor="image_url"
+                                    className="block  text-sm font-medium leading-6 text-gray-900"
+                                >
+                                    Image Url
+                                </label>
+
+                                <div>
+                                    <input
+                                        id="image_url"
+                                        name="image_url"
+                                        type="text"
+                                        // value={description}
+                                        onChange={e => setAvatar(e.target.value)}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>

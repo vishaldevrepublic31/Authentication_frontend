@@ -61,7 +61,14 @@ function MyPost() {
             });
     }, [update]);
 
+    if (posts.length === 0) {
+        return <>
+            <div className="flex justify-center items-center h-[90vh]">
 
+                <h1 className="bg-red-200  p-10 w-96 rounded-md text-center font-semibold  "   >No Post found 😫. </h1>
+            </div>
+        </>
+    }
 
     return (
         <div>
@@ -71,8 +78,8 @@ function MyPost() {
                     className="mt-5 even:bg-gray-100 py-8 px-8 max-w-5xl   mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6"
                 >
                     <img
-                        className="block mx-auto h-80 w-80 sm:mx-0 sm:shrink-0"
-                        src={post.avatar.secure_url}
+                        className="block mx-auto h-80 w-[28rem] sm:mx-0 sm:shrink-0"
+                        src={post.avatar}
                         alt="Woman's Face"
                     />
                     {/* rounded-full  */}
@@ -112,6 +119,7 @@ function MyPost() {
                                     onClick={() => {
                                         setEdit(false);
                                         setId("");
+
                                     }}
                                     className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 me-2"
                                 >
@@ -132,6 +140,8 @@ function MyPost() {
                                     onClick={() => {
                                         setEdit(true);
                                         setId(post._id);
+                                        setDescription(post.description)
+                                        setTitle(post.title)
                                     }}
                                     className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 me-2"
                                 >
@@ -147,8 +157,9 @@ function MyPost() {
                         )}
                     </div>
                 </div>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     );
 }
 

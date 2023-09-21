@@ -14,6 +14,8 @@ export const MyPosts = async (token: any) => {
   });
 };
 export const AddPosts = async ( token: any,data: any) => {
+  console.log('image',data.avatar);
+  
   return axios.post(`${PORT}create-post`, data , {
     headers: {
       "Content-Type": "application/json",
