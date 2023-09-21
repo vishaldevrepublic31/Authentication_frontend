@@ -16,11 +16,10 @@ const AllUser: React.FC = () => {
         })
     }, [])
 
-    if (data.length === 0) {
+    if (data.length < 0) {
         return <>
             <div className="flex justify-center items-center h-[90vh]">
-
-                <h1 className="bg-red-200  p-10 w-96 rounded-md text-center font-semibold  "   >No Post found 😫. </h1>
+                <h1 className="bg-red-200  p-10 w-96 rounded-md text-center font-semibold  "   >No User found 😫. </h1>
             </div>
         </>
     }
