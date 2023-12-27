@@ -17,6 +17,7 @@ import AllUser from "../components/post/AllUser";
 import UserPost from "../components/UserPost";
 import MyPost from "../components/post/MyPost";
 import AddPost from "../components/post/AddPost";
+import AllPost from "../components/allPost";
 
 const index: React.FC = () => {
 
@@ -46,6 +47,7 @@ const index: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/update-profile" element={<UpdateProfile />} />
           <Route path="/all-user" element={<AllUser />} />
+          <Route path="/posts" element={<AllPost />} />
           <Route path="/user-posts/:id" element={<UserPost />} />
           <Route path="/my-posts" element={<MyPost />} />
           <Route path="/add-post" element={<AddPost />} />

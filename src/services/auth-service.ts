@@ -41,8 +41,8 @@ export const ForgetPassword =async (data: any) => {
 
 }
 
-export const AllUsers =async () => {
-    return axios.get(`${PORT}users`)
+export const AllUsers =async (params: { search: string; }) => {
+    return axios.get(`${PORT}users`, { params })
  
  }
 

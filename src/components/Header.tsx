@@ -9,6 +9,7 @@ import { INavigation } from "../interfaces";
 const navigation: INavigation[] = [
   { name: "Home", to: "/" },
   { name: "All User", to: "/all-user" },
+  { name: "All Post", to: "/posts" },
   { name: "My Posts", to: "/my-posts" },
   { name: "Add Post", to: "/add-post" },
 ];

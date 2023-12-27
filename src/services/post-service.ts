@@ -2,6 +2,11 @@ import axios from "axios";
 
 const PORT = "http://localhost:5000/api/v1/post/";
 
+export const AllPosts =async (params: { search: string; }) => {
+  return axios.get(`${PORT}get-all-post`, { params })
+
+}
+
 export const UserPosts = async (userId: any) => {
   return axios.get(`${PORT}user-posts/${userId}`);
 };
